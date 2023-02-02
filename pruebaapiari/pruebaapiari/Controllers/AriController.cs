@@ -19,7 +19,7 @@ namespace pruebaapiari.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<AriRequest> Get(string userId)
+        public ListAriRequest Get(string userId)
         {
             var listRequest = new List<AriRequest>();
 
@@ -27,14 +27,23 @@ namespace pruebaapiari.Controllers
             listRequest.Add(new AriRequest("002", "Byron Fonseca", 2345, "Corte", userId));
             listRequest.Add(new AriRequest("003", "Test usuario", 3456, "reconexion", userId));
             listRequest.Add(new AriRequest("004", "Test 2", 7891, "reconexion", userId));
-            return listRequest.ToArray();
+            return new ListAriRequest(listRequest);
         }
+    }
+    public class ListAriRequest
+    {
+        public ListAriRequest(List<AriRequest> request) 
+        {
+            orders = request;
+        }
+        public List<AriRequest> orders { get; set; }
     }
 
     public class AriRequest
     {
         public AriRequest(string _numeroOrden, string _nombre, int _numeroMedidor, string _tipoFlujo, string _idUsuario)
         {
+            numeroOrden= _numeroOrden;
             numeroMedidor = _numeroMedidor;
             nombre= _nombre;
             numeroMedidor = (int)_numeroMedidor;
