@@ -101,7 +101,7 @@ namespace pruebaapiari.Controllers
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Map table names
-            modelBuilder.Entity<WorkOrder>().ToTable("WorkOrder", "dbo");
+            modelBuilder.Entity<WorkOrder>().ToTable("WorkOrder");
             modelBuilder.Entity<WorkOrder>(entity =>
             {
                 entity.HasKey(e => e.WorkOrderId);
